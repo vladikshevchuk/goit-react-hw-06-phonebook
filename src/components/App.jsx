@@ -13,7 +13,6 @@ export const App = () => {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ]
   );
-  const [filter, setFilter] = useState('');
 
   const submitFormHandle = newContact => {
     if (contacts.some(contact => contact.name === newContact.name)) {
@@ -23,21 +22,9 @@ export const App = () => {
     }
   };
 
-  const filterChange = e => {
-    setFilter(e.target.value);
-  };
-
-  const getVisibleContacts = () => {
-    const normalizedFilter = filter.toLowerCase();
-
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(normalizedFilter)
-    );
-  };
-
-  const onDeleteContact = contactId => {
-    setContacts(state => state.filter(contact => contact.id !== contactId));
-  };
+  // const onDeleteContact = contactId => {
+  //   setContacts(state => state.filter(contact => contact.id !== contactId));
+  // };
 
   useEffect(() => {
     window.localStorage.setItem('contacts', JSON.stringify(contacts));
@@ -48,11 +35,8 @@ export const App = () => {
       <h1>Phonebook</h1>
       <Form onSubmit={submitFormHandle} />
       <h2>Contacts</h2>
-      <FindNumberByName value={filter} onChange={filterChange} />
-      <ContactsList
-        contacts={getVisibleContacts()}
-        onDelete={onDeleteContact}
-      />
+      <FindNumberByName />
+      <ContactsList />
     </div>
   );
 };
