@@ -22,7 +22,10 @@ export const contactsSlice = createSlice({
       }
     },
     removeContact: (state, action) => {
-      return state.contacts.filter(contact => contact.id !== action.payload);
+      const index = state.contacts.findIndex(
+        contact => contact.id === action.payload
+      );
+        state.contacts.splice(index, 1);
     },
     filterContact: (state, action) => {
       state.filter = action.payload.toLowerCase();

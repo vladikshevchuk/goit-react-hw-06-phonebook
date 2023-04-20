@@ -1,10 +1,9 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { removeContact } from 'redux/contactsSlice';
-import { Contact, Ul } from './Contacts.styled';
+import { useSelector } from 'react-redux';
+import { Ul } from './Contacts.styled';
+import PersonContact from './PersonContact';
 
 const ContactsList = () => {
-  const dispatch = useDispatch();
   const state = useSelector(state => state.contacts);
 
   const getVisibleContacts = () => {
@@ -18,9 +17,7 @@ const ContactsList = () => {
   return (
     <Ul>
     {getVisibleContacts().map(contact => {
-      return <Contact key={contact.id}>{contact.name}: {contact.number}
-        <button onClick={() => dispatch(removeContact(contact.id))}>Delete</button>
-      </Contact>
+      return <PersonContact key={contact.id} contact={ contact } />
     })}
   </Ul>
   )
