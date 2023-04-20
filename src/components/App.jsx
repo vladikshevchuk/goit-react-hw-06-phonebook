@@ -36,7 +36,6 @@ export const App = () => {
   };
 
   const onDeleteContact = contactId => {
-    console.log(contactId);
     setContacts(state => state.filter(contact => contact.id !== contactId));
   };
 
